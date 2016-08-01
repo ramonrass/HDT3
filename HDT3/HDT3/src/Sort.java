@@ -11,20 +11,33 @@ public class Sort{
      */
     public Sort(){
     }
-    
+        Lista<Integer> lista;
   
-    //Sacado de http://courses.cs.washington.edu/courses/cse373/01wi/slides/Measurement/sld010.htm
-   /* public void InsertionSort(){
+   
+   public Lista<Integer> InsertionSort(Lista<Integer> lis){
       int i, j, nuevoValor;
-      for (i=1; i < numerosArray.length; i++) {
-            nuevoValor = numerosArray[i];
-            for (j=i -1; j>=0 && nuevoValor<numerosArray[j]; j--) {
-                  numerosArray[j+1] = numerosArray[j];
+      int[] arr = new int[lis.getLargo()];
+      Nodo valor = lis.getTop();
+      for (i=0; i < lis.getLargo(); i++) {
+          arr[i] = (Integer)valor.getValor();
+          valor = valor.getSiguiente();
+      }
+      
+      for (i=1; i < arr.length; i++) {
+            nuevoValor = arr[i];
+            for (j=i -1; j>=0 && nuevoValor<arr[j]; j--) {
+                  arr[j+1] = arr[j];
             }
-            numerosArray[j+1] = nuevoValor;
-      } 
-    }*/
-    
+        arr[j+1] = nuevoValor;
+        }
+      
+      Lista orden = new Lista();
+      for (i=0; i < lis.getLargo(); i++) {
+          orden.addNodo(arr[i]);
+      }
+      
+      return orden;
+    }
     
     /**
      * 
@@ -74,23 +87,61 @@ public class Sort{
             return temp;
         }
     }
-    public Lista<Integer> bubbleSort(Lista<Integer>lis){
-    int nnum, i, j, temp;
-    nnum = lis.getLargo(); 
-    int array[] = new int[nnum];
-    for (i = 0; i < nnum; i++) 
-      array[i] = lis.getSiguiente(); 
-    for (i = 0; i < ( nnum - 1 ); i++) {
-      for (j = 0; j < nnum - i - 1; j++) {
-        if (array[j] > array[j+1])
-        {
-          temp     = array[j];
-          array[j]   = array[j+1];
-          array[j+1] = temp;
+    
+    public void QuickSort(Lista<Integer> lis,int bajo,int alto){
+        int mitad = bajo + (alto - bajo)/2;
+        Nodo nTemp=lis.getTop();
+        Nodo nBajo=lis.getTop(), nAlto=lis.getTop();
+        for (int i=0;i<mitad;i++){
+            nTemp=nTemp.getSiguiente();
         }
-      }
+        
+        int i=bajo;
+            for (int a=0;a<i;a++){
+                nBajo=nBajo.getSiguiente();
+            }
+        int j=alto;
+            for (int a=0;a<j;a++){
+                nAlto=nAlto.getSiguiente();
+            }
+        while(i<=j){
+            while (nBajo.getValor().compareTo(nTemp.getValor())<0){
+                i++;
+                nBajo=nBajo.getSiguiente();
+            }
+            while (nAlto.getValor().compareTo(nTemp.getValor())>0){
+                j--;
+                nAlto=nAlto.getAnterior();
+            }
+            if (i <= j){
+                Comparable mov = nBajo.getValor();
+                nBajo.setValor(nAlto.getValor());
+                nAlto.setValor(mov);
+                i++;
+                nBajo=nBajo.getSiguiente();
+                j--;
+                nAlto=nAlto.getAnterior();
+            
+            }
+        
+        }
+        
+        if (bajo < j){
+            QuickSort(lis,bajo,j);
+        }
+        if (alto > i){
+            QuickSort(lis,i,alto);
+        }
+        lista=lis;
     }
-    } 
-   
-      
-  }
+
+    public Lista<Integer> getLista() {
+        return lista;
+    }
+
+    public void setLista(Lista<Integer> lista) {
+        this.lista = lista;
+    }
+    
+    
+}

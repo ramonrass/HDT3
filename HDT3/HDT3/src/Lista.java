@@ -64,13 +64,15 @@ public class Lista<T> {
             top = new Nodo((Comparable) val);
             largo++;
         }else{
-            Nodo temp;
+            Nodo temp, temp2;
             temp = top;
             while (temp.getSiguiente()!=null){
                 temp = temp.getSiguiente();                
             }
             Nodo neNo = new Nodo((Comparable)val);
             temp.setSiguiente(neNo);
+            temp2 = temp.getSiguiente();
+            temp2.setAnterior(temp);
             largo++;
         }
     }
@@ -78,11 +80,12 @@ public class Lista<T> {
         if (top== null){
             System.out.println("La lista esta vacia");
         }else{
-            Nodo temp;
+            Nodo temp,temp2;
             temp = top;
             while (temp.getSiguiente()!=null){
                 System.out.println(temp);
                 temp = temp.getSiguiente();
+                temp2= temp.getAnterior();
             }
             System.out.println(temp);
         }

@@ -10,6 +10,7 @@ public class Nodo<T extends Comparable>
     T Valor;
     
     Nodo Siguiente;
+    Nodo Anterior;
     
     public Nodo(T valor)
     {
@@ -37,12 +38,41 @@ public class Nodo<T extends Comparable>
         return this.Valor;
     }  
     
+    /**
+     *
+     * @param anterior : Nodo
+     * mete el nodo anterior
+     */
+    public void setAnterior(Nodo anterior)
+    {
+        this.Anterior= anterior;
+    }
     
+    /**
+     *
+     * @return Anterior: Nodo
+     * Mete el valor del nodoo anterior
+     */
+    public Nodo getAnterior()
+    {
+        return this.Anterior;
+    }
+    
+    /**
+     *
+     * @param siguiente : Nodo
+     * mete el nodo siguiente
+     */
     public void setSiguiente(Nodo siguiente)
     {
         this.Siguiente = siguiente;
     }
     
+    /**
+     *
+     * @return Siguiente: Nodo
+     * Mete el valor del nodo siguiente
+     */
     public Nodo getSiguiente()
     {
         return this.Siguiente;
