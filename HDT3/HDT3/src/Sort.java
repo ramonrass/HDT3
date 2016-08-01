@@ -74,4 +74,23 @@ public class Sort{
             return temp;
         }
     }
-}
+    public Lista<Integer> bubbleSort(Lista<Integer>lis){
+    int nnum, i, j, temp;
+    nnum = lis.getLargo(); 
+    int array[] = new int[nnum];
+    for (i = 0; i < nnum; i++) 
+      array[i] = lis.getSiguiente(); 
+    for (i = 0; i < ( nnum - 1 ); i++) {
+      for (j = 0; j < nnum - i - 1; j++) {
+        if (array[j] > array[j+1])
+        {
+          temp     = array[j];
+          array[j]   = array[j+1];
+          array[j+1] = temp;
+        }
+      }
+    }
+    } 
+   
+      
+  }
